@@ -12,3 +12,6 @@ class Category(CustomBaseModel):
             raise ValueError('Slug must have only letters, hyphens and underscores')
         
         return value
+    
+class CategoryOutput(Category):
+    id: int
