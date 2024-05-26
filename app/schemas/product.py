@@ -29,3 +29,8 @@ class Product(CustomBaseModel):
             raise ValueError('Stock must be greater than or equal to zero')
         
         return value
+
+
+class ProductInput(CustomBaseModel):
+    category_slug: str
+    product: Product

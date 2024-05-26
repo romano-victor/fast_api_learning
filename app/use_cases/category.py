@@ -24,10 +24,8 @@ class CategoryUseCases:
         ]
 
         return categories_output
-    
-    def serialize_category(self, category: CategoryModel):
-        return CategoryOutput(**category.__dict__)
-    
+
+
     def delete_category(self, id: int):
         category = self.db_session.query(CategoryModel).filter_by(id=id).first()
         if not category:
@@ -35,3 +33,7 @@ class CategoryUseCases:
         
         self.db_session.delete(category)
         self.db_session.commit()
+    
+    
+    def serialize_category(self, category: CategoryModel):
+        return CategoryOutput(**category.__dict__)
