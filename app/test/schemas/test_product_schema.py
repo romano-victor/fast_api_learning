@@ -1,5 +1,6 @@
 import pytest
-from app.schemas.product import Product, ProductInput
+from app.schemas.product import Product, ProductInput, ProductOutput
+from app.schemas.category import Category
 
 def test_product_schema():
     product = Product(
@@ -90,4 +91,33 @@ def test_product_input_schema():
             'stock': 10,
         }
 
+    }
+
+
+def test_product_output_schema():
+    category = Category(
+        id=1,
+        name='teste_product',
+        slug='teste_product'
+    )
+    
+    product_output = ProductOutput(
+        id=1, 
+        name='Camiseta',
+        slug='camiseta',
+        price=50.0,
+        stock=10,
+        category=category
+    )
+
+    assert product_output.model_dump() == {
+        'id': 1,
+        'name': 'Camiseta',
+        'slug': 'camiseta',
+        'price': 50.0,
+        'stock': 10,
+        'category': {
+            'id': 1,
+            'name': 'teste_product',
+            'slug': 'teste_product'}
     }
